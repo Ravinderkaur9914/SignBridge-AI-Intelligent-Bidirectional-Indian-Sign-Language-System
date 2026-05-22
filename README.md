@@ -188,6 +188,14 @@ Accuracy:99.01%
 - SpeechRecognition
 - Pillow, matplotlib
 
+  ## 🎓 Final Conclusion
+
+- The AI-Based Bidirectional Sign Language Communication System provides an intelligent and accessible solution for reducing communication barriers between deaf and hearing individuals. By integrating Computer Vision, MediaPipe, TensorFlow, and Streamlit, the system enables real-time Indian Sign Language recognition and supports bidirectional communication through text and speech conversion.
+
+- The project demonstrates how Artificial Intelligence can be applied to create inclusive technologies that improve accessibility and social interaction. With high model accuracy and support for future expansion, the system can be further enhanced by adding more gestures, multilingual support, and advanced deep learning models for better real-world performance.
+
+- This project represents a step toward building smarter and more inclusive communication systems for society.
+
 ---
 
 *Built for inclusive communication — bridging the gap between deaf/mute individuals and the world.*
