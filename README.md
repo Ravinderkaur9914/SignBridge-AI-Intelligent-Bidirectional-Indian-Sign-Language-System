@@ -1,2 +1,169 @@
-# SignBridge-AI-Intelligent-Bidirectional-Indian-Sign-Language-System
-SignBridge AI is an AI-powered real-time communication system that bridges the gap between deaf and hearing individuals using Computer Vision, Deep Learning, and AI. It recognizes Indian Sign Language gestures, converts them into text and speech, and supports reverse communication through text-to-sign animation.
+# 🤟 AI-Based Bidirectional Sign Language Communication System
+
+> Real-time Indian Sign Language ↔ Text/Voice using MediaPipe + TensorFlow + Streamlit
+
+---
+
+## 📁 Project Structure
+
+```
+sign_language_system/
+│
+├── collect_data.py          # Step 1 – Dataset collection via webcam
+├── train_model.py           # Step 2 – Train neural network
+├── app.py                   # Step 3 – Streamlit web app (main UI)
+├── requirements.txt         # All dependencies
+│
+├── modules/                 # Core AI modules
+│   ├── __init__.py
+│   ├── hand_detector.py     # MediaPipe hand landmark detection
+│   ├── gesture_recognizer.py# TensorFlow gesture classification
+│   ├── sentence_builder.py  # Gesture → sentence accumulation
+│   ├── tts_engine.py        # Text-to-speech (pyttsx3 / gTTS)
+│   └── sign_display.py      # Text/Voice → Sign visuals
+│
+├── dataset/
+│   └── landmarks.csv        # Generated during data collection
+│
+├── model/
+│   ├── gesture_model.h5     # Saved Keras model (after training)
+│   ├── label_encoder.npy    # Gesture class names
+│   ├── norm_mean.npy        # Normalization stats
+│   ├── norm_std.npy
+│   └── training_history.png # Accuracy/Loss plot
+│
+└── signs/
+    ├── words/               # Sign images per word (Hello.jpg, etc.)
+    └── alphabets/           # Fingerspelling A–Z images
+```
+
+---
+
+## ⚙️ Installation & Setup
+
+### 1. Prerequisites
+- Python 3.9 or 3.10 (recommended)
+- Webcam connected
+- Windows / Linux / macOS
+
+### 2. Create Virtual Environment
+```bash
+# Create venv
+python -m venv venv
+
+# Activate (Windows)
+venv\Scripts\activate
+
+# Activate (Linux/macOS)
+source venv/bin/activate
+```
+
+### 3. Install Dependencies
+```bash
+pip install -r requirements.txt
+```
+
+---
+
+## 🚀 Running the System
+
+### Step 1 — Collect Dataset
+```bash
+python collect_data.py
+```
+- A camera window opens for each gesture
+- Press **S** to start recording samples
+- Press **Q** to skip a gesture
+- Collects 300 samples per gesture by default
+
+### Step 2 — Train the Model
+```bash
+python train_model.py
+```
+- Trains the neural network (~100 epochs with early stopping)
+- Saves model to `model/gesture_model.h5`
+- Prints accuracy report and saves training graph
+
+### Step 3 — Launch the Web App
+```bash
+streamlit run app.py
+```
+- Opens automatically at: **http://localhost:8501**
+- Go to **Tab 1** → Click **▶️ Start Camera**
+- Perform ISL gestures in front of your webcam
+
+---
+
+## 🎯 Features
+
+| Feature | Description |
+|---------|-------------|
+| Real-time Gesture Recognition | 21 MediaPipe landmarks → TensorFlow classifier |
+| Sentence Formation | Debounced accumulation of gesture words |
+| Text-to-Speech | pyttsx3 (offline) or gTTS (online) |
+| Text → Sign Visuals | Word or fingerspelling sign images |
+| Voice → Sign Visuals | Microphone → Google STT → Sign grid |
+| Streamlit UI | 4-tab interface with live camera feed |
+
+---
+
+## 📊 Model Architecture
+
+```
+Input (42 features: 21 landmarks × x,y)
+    ↓
+Dense(256) → BatchNorm → Dropout(0.4)
+    ↓
+Dense(256) → BatchNorm → Dropout(0.3)
+    ↓
+Dense(128) → BatchNorm → Dropout(0.3)
+    ↓
+Dense(64) → Dropout(0.2)
+    ↓
+Dense(N_classes) → Softmax
+```
+
+---
+
+## 🤟 Supported Gestures (Default)
+
+**Words:** Hello, Thank You, Yes, No, Please, Sorry, Help, Water, Food, I Love You, Good, Bad, Stop, Come, Go
+
+**Alphabets:** A–Z (fingerspelling fallback)
+
+---
+
+## ➕ Adding New Gestures
+
+1. Add gesture name to `GESTURES` list in `collect_data.py`
+2. Place sign image in `signs/words/<GESTURE_NAME>.jpg`
+3. Re-run `python collect_data.py`
+4. Re-run `python train_model.py`
+
+---
+
+## 🛠️ Common Issues
+
+| Issue | Fix |
+|-------|-----|
+| Camera not found | Change `camera_index` in Streamlit sidebar |
+| Low accuracy | Collect 500+ samples, improve lighting |
+| pyttsx3 error on Linux | `sudo apt-get install espeak` |
+| No microphone | Use Text Input mode in Tab 2 |
+
+---
+
+## 📋 Requirements
+
+- opencv-python
+- mediapipe
+- tensorflow
+- numpy, pandas, scikit-learn
+- streamlit
+- pyttsx3, gTTS
+- SpeechRecognition
+- Pillow, matplotlib
+
+---
+
+*Built for inclusive communication — bridging the gap between deaf/mute individuals and the world.*
