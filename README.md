@@ -142,6 +142,15 @@ Dense(N_classes) → Softmax
 
 ---
 
+## Dataset Information
+ISL Alphabets, Numbers, Greetings, Common Words, Healthcare Signs
+Training:72%
+Validation:14%
+Testing:14%
+Accuracy:99.01%
+
+---
+
 ## 🛠️ Common Issues
 
 | Issue | Fix |
