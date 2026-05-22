@@ -5,10 +5,17 @@
 ---
 
 ## 📸 Demo Screenshot
+### Dashboard 
+
  <img width="1016" height="447" alt="image" src="https://github.com/user-attachments/assets/48fee1e4-ec1b-4335-b605-f241c2073e15" />
+ 
+### Regional Language Translation
+ <img width="1016" height="331" alt="image" src="https://github.com/user-attachments/assets/5e1701bc-ea4c-4d89-a10e-c806a6ea2a18" />
+ 
+ ### Regional Language Translation
+ <img width="1016" height="366" alt="image" src="https://github.com/user-attachments/assets/a377e4ad-3f22-4db2-932f-580965f7a4a6" />
 
-
-## 📁 Project Structure
+ ## 📁 Project Structure
 
 ```
 sign_language_system/
